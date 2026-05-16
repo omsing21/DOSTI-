@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DOSTI</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main id="authScreen" class="auth-screen">
+      <section class="auth-card pixel-card">
+        <div class="hero-art" aria-hidden="true">
+          <div class="pixel-sun"></div>
+          <div class="pixel-cloud cloud-a"></div>
+          <div class="pixel-cloud cloud-b"></div>
+          <div class="pixel-campus"></div>
+        </div>
+        <div class="brand-line">
+          <div class="logo-block">D</div>
+          <div>
+            <h1>DOSTI</h1>
+            <p>Find your campus people with BERT-powered matching.</p>
+          </div>
+        </div>
+        <form id="loginForm" class="stack-form">
+          <label>
+            Name
+            <input id="loginName" value="Om Pawar" maxlength="48" required />
+          </label>
+          <label>
+            College email
+            <input id="loginEmail" value="om@somaiya.edu" maxlength="80" required />
+          </label>
+          <button type="submit">Login / Signup</button>
+        </form>
+      </section>
+    </main>
+
+    <main id="appScreen" class="app-shell hidden">
+      <aside class="side-panel pixel-card">
+        <div class="brand-line compact">
+          <div class="logo-block">D</div>
+          <div>
+            <h1>DOSTI</h1>
+            <p id="aiBadge">BERT loading</p>
+          </div>
+        </div>
+
+        <section id="miniProfile" class="mini-profile"></section>
+
+        <nav class="nav-grid" aria-label="DOSTI screens">
+          <button class="nav-btn active" data-view="onboardingView">Profile Setup</button>
+          <button class="nav-btn" data-view="discoverView">Friends You Can Make</button>
+          <button class="nav-btn" data-view="matchedView">Matched Friends</button>
+          <button class="nav-btn" data-view="eventsView">Events</button>
+          <button class="nav-btn" data-view="feedView">Feed</button>
+          <button class="nav-btn" data-view="profileView">Profile</button>
+          <button class="nav-btn" data-view="settingsView">Settings</button>
+          <button class="nav-btn" data-view="bertView">BERT Viva</button>
+        </nav>
+      </aside>
+
+      <section class="screen-panel pixel-card">
+        <section id="onboardingView" class="view active">
+          <header class="screen-head">
+            <div>
+              <h2>Build Your DOSTI Card</h2>
+              <p>Add interests, hobbies, bio, locality, and a tiny profile avatar.</p>
+            </div>
+            <span id="dbStats" class="pill">loading database</span>
+          </header>
+          <form id="profileForm" class="profile-form">
+            <label>
+              Display name
+              <input id="profileName" maxlength="48" />
+            </label>
+            <label>
+              Pixel PFP initials
+              <input id="profileAvatar" maxlength="3" />
+            </label>
+            <label>
+              Locality
+              <input id="profileLocality" maxlength="48" />
+            </label>
+            <label class="wide">
+              Interests
+              <input id="profileInterests" placeholder="AI, football, music" />
+            </label>
+            <label class="wide">
+              Hobbies
+              <input id="profileHobbies" placeholder="building apps, guitar, gaming" />
+            </label>
+            <label class="wide">
+              Bio
+              <textarea id="profileBio" maxlength="360"></textarea>
+            </label>
+            <button type="submit">Save Profile and Recalculate BERT Matches</button>
+          </form>
+        </section>
+
+        <section id="discoverView" class="view">
+          <header class="screen-head">
+            <div>
+              <h2>Friends You Can Make</h2>
+              <p>BERT ranks students by profile meaning, locality, and common interests.</p>
+            </div>
+          </header>
+          <div id="discoverList" class="card-grid"></div>
+        </section>
+
+        <section id="matchedView" class="view">
+          <header class="screen-head">
+            <div>
+              <h2>Your Matched Friends</h2>
+              <p>Similarity score, common interests, and why DOSTI matched you.</p>
+            </div>
+          </header>
+          <div id="matchedList" class="card-grid"></div>
+        </section>
+
+        <section id="eventsView" class="view">
+          <header class="screen-head">
+            <div>
+              <h2>Campus Events</h2>
+              <p>Host, attend, or text the host to plan a meetup.</p>
+            </div>
+          </header>
+          <form id="eventForm" class="event-form">
+            <input id="eventTitle" placeholder="Event title" required />
+            <input id="eventTime" placeholder="When" required />
+            <input id="eventLocality" placeholder="Where" required />
+            <input id="eventTags" placeholder="Tags: AI, music, football" />
+            <textarea id="eventSummary" placeholder="What is happening?" required></textarea>
+            <button type="submit">Post Event</button>
+          </form>
+          <div id="eventList" class="event-list"></div>
+        </section>
+
+        <section id="feedView" class="view">
+          <header class="screen-head">
+            <div>
+              <h2>Campus Feed</h2>
+              <p>Share ideas, event updates, and meetup plans.</p>
+            </div>
+          </header>
+          <form id="postForm" class="post-form">
+            <textarea id="postText" maxlength="280" placeholder="Share something fun..." required></textarea>
+            <div class="form-row">
+              <span id="counter" class="pill">0/280</span>
+              <button type="button" id="analyzeBtn">Analyze</button>
+              <button type="submit">Post</button>
+            </div>
+            <div id="postInsight" class="notice">BERT signal appears here before you post.</div>
+          </form>
+          <div id="feedList" class="feed-list"></div>
+        </section>
+
+        <section id="profileView" class="view">
+          <header class="screen-head">
+            <div>
+              <h2>Profile</h2>
+              <p>Your public card shown to possible friends.</p>
+            </div>
+          </header>
+          <div id="profileCard" class="profile-card-large"></div>
+        </section>
+
+        <section id="settingsView" class="view">
+          <header class="screen-head">
+            <div>
+              <h2>Settings</h2>
+              <p>Demo controls for presentation and privacy explanation.</p>
+            </div>
+          </header>
+          <div class="settings-grid">
+            <label class="toggle-row"><input type="checkbox" checked /> Show locality in recommendations</label>
+            <label class="toggle-row"><input type="checkbox" checked /> Use BERT semantic matching</label>
+            <label class="toggle-row"><input type="checkbox" checked /> Show explainable AI reasons</label>
+            <label class="toggle-row"><input type="checkbox" /> Private profile mode</label>
+          </div>
+        </section>
+
+        <section id="bertView" class="view">
+          <header class="screen-head">
+            <div>
+              <h2>BERT Viva Explanation</h2>
+              <p>Use this screen to explain the implementation to examiners.</p>
+            </div>
+          </header>
+          <div class="bert-box">
+            <div id="formula" class="formula"></div>
+            <ol id="bertSteps"></ol>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
